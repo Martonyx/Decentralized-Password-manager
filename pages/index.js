@@ -1,9 +1,19 @@
-import Head from 'next/head'
-import styles from '@/styles/Home.module.css'
-import Link from 'next/link'
-
+import Head from "next/head";
+import styles from "@/styles/Home.module.css";
+import Link from "next/link";
+import { ethers } from "ethers";
 
 export default function Home() {
+  const connectwallet = async () => {
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -13,30 +23,44 @@ export default function Home() {
         <link rel="icon" href="/profile2.png" />
       </Head>
       <main className={styles.main}>
-        <div>
-          <img src='/martonyx.png' alt='martonyx.png' className={styles.icon}/>
-          <button className={styles.connect}>connect your wallet</button>
+        <div className={styles.headdiv}>
+          <img src="/martonyx.png" alt="martonyx.png" className={styles.icon} />
+          <h1 className={styles.headtext}>
+            When your Password is Decentralized, it is Safe.
+          </h1>
+          <button className={styles.connect} onClick={connectwallet}>
+            connect your wallet
+          </button>
         </div>
         <div className={styles.description}>
-            <div className={styles.maindiv}>
-              <div className={styles.inputdiv}>
-                <input placeholder='input your password here' id='password' className={styles.inputpass} />
-                <input placeholder='Give a name for the password' id='passwordname' className={styles.inputpass} />
-              </div>
-              <div className={styles.buttondiv}>
-                  <button className={styles.button}>
-                    <Link href='./src/generatePassword'>Generate Password</Link>
-                  </button>
-                  {/* <button className={styles.button}>
+          <h1 className={styles.dexText}>Decentralized Password Manager</h1>
+          <div className={styles.maindiv}>
+            <div className={styles.inputdiv}>
+              <input
+                placeholder="input your password here"
+                id="password"
+                className={styles.inputpass}
+              />
+              <input
+                placeholder="Give a name for the password"
+                id="passwordname"
+                className={styles.inputpass}
+              />
+            </div>
+            <div className={styles.buttondiv}>
+              <button className={styles.button}>
+                <Link href="./src/generatePassword">Generate Password</Link>
+              </button>
+              {/* <button className={styles.button}>
                     <Link href='./src/addpassword'>Generate Password</Link>
                   </button> */}
-                  <button className={styles.button}>
-                    <Link href='./src/passwords'>Fetch Password</Link>
-                  </button>
-              </div>
+              <button className={styles.button}>
+                <Link href="./src/passwords">Fetch Password</Link>
+              </button>
             </div>
+          </div>
         </div>
       </main>
     </>
-  )
+  );
 }
