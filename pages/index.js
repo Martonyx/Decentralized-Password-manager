@@ -1,9 +1,7 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import Link from 'next/link'
 
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
@@ -26,9 +24,15 @@ export default function Home() {
                 <input placeholder='Give a name for the password' id='passwordname' className={styles.inputpass} />
               </div>
               <div className={styles.buttondiv}>
-                <button className={styles.button}>Generate Password</button>
-                <button className={styles.button}>Add Password</button>
-                <button className={styles.button}>fetch Passwords</button>
+                  <button className={styles.button}>
+                    <Link href='./src/generatePassword'>Generate Password</Link>
+                  </button>
+                  {/* <button className={styles.button}>
+                    <Link href='./src/addpassword'>Generate Password</Link>
+                  </button> */}
+                  <button className={styles.button}>
+                    <Link href='./src/passwords'>Fetch Password</Link>
+                  </button>
               </div>
             </div>
         </div>
