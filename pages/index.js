@@ -24,7 +24,13 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.headdiv}>
-          <img src="/martonyx.png" alt="martonyx.png" className={styles.icon} />
+          <a target={"_blank"} href={"https://martonyx.netlify.app"}>
+            <img
+              src="/martonyx.png"
+              alt="martonyx.png"
+              className={styles.icon}
+            />
+          </a>
           <h1 className={styles.headtext}>
             When your Password is Decentralized, it is Safe.
           </h1>
