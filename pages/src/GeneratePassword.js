@@ -3,7 +3,7 @@ import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 import { useState } from "react";
 
-const GeneratePassword = () => {
+function GeneratePassword() {
   const [isAlphaaChecked, setAlphaaChecked] = useState(false);
   const [isAlphaChecked, setAlphaChecked] = useState(false);
   const [isNumChecked, setNumChecked] = useState(false);
@@ -168,6 +168,6 @@ const GeneratePassword = () => {
       </main>
     </>
   );
-};
+}
 
 export default GeneratePassword;

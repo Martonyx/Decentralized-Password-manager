@@ -55,7 +55,7 @@ export default function Home() {
             </div>
             <div className={styles.buttondiv}>
               <button className={styles.button}>
-                <Link href="./src/generatePassword">Generate Password</Link>
+                <Link href="./src/GeneratePassword">Generate Password</Link>
               </button>
               <button className={styles.button}>
                 <Link href="./src/passwords">Save Password</Link>
