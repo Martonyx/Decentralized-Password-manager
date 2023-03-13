@@ -3,7 +3,7 @@ import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 import { useState } from "react";
 
-const generatePassword = () => {
+const GeneratePassword = () => {
   const [isAlphaaChecked, setAlphaaChecked] = useState(false);
   const [isAlphaChecked, setAlphaChecked] = useState(false);
   const [isNumChecked, setNumChecked] = useState(false);
@@ -17,56 +17,56 @@ const generatePassword = () => {
   const numbers = "1234567890";
   const symbols = "!@#$%^&*(?/)";
 
-  function generateAalphbets() {
+  function GenerateAalphbets() {
     const alpha = Math.floor(Math.random() * alphabets.length);
     const alphaa = Alphabets[alpha];
     return alphaa;
   }
 
-  function generateAlphbets() {
+  function GenerateAlphbets() {
     const alpha = Math.floor(Math.random() * alphabets.length);
     const alph = alphabets[alpha];
     return alph;
   }
 
-  function generateNumbers() {
+  function GenerateNumbers() {
     const numbs = Math.floor(Math.random() * numbers.length);
     const numb = numbers[numbs];
     return numb;
   }
 
-  function generateSymbols() {
+  function GenerateSymbols() {
     const symbol = Math.floor(Math.random() * symbols.length);
     const symb = symbols[symbol];
     return symb;
   }
 
-  function generalPassword() {
+  function GeneralPassword() {
     let passwordlength = numEl;
 
     let genPassword = "";
 
     for (let i = 0; i < passwordlength; i++) {
-      const x = generatePass();
+      const x = GeneratePass();
       genPassword += x;
     }
     return setPasswordEle(genPassword);
   }
 
-  function generatePass() {
+  function GeneratePass() {
     let xs = [];
 
     if (isAlphaChecked) {
-      xs.push(generateAlphbets());
+      xs.push(GenerateAlphbets());
     }
     if (isNumChecked) {
-      xs.push(generateNumbers());
+      xs.push(GenerateNumbers());
     }
     if (isSymbChecked) {
-      xs.push(generateSymbols());
+      xs.push(GenerateSymbols());
     }
     if (isAlphaaChecked) {
-      xs.push(generateAalphbets());
+      xs.push(GenerateAalphbets());
     }
 
     if (xs.length === 0) {
@@ -76,7 +76,7 @@ const generatePassword = () => {
     return xs[Math.floor(Math.random() * xs.length)];
   }
 
-  function handleCopy() {
+  function HandleCopy() {
     let text = passwordEle;
     setIsEditing(true);
     navigator.clipboard.writeText(text);
@@ -107,7 +107,7 @@ const generatePassword = () => {
             ) : (
               <div className={styles.copySpan}>
                 {passwordEle}
-                <button onClick={handleCopy} className={styles.copyBtn}>
+                <button onClick={HandleCopy} className={styles.copyBtn}>
                   copy
                 </button>
               </div>
@@ -161,7 +161,7 @@ const generatePassword = () => {
               type={"checkbox"}
             />
           </div>
-          <button className={styles.generateBtn} onClick={generalPassword}>
+          <button className={styles.generateBtn} onClick={GeneralPassword}>
             Generate Password
           </button>
         </div>
@@ -170,4 +170,4 @@ const generatePassword = () => {
   );
 };
 
-export default generatePassword;
+export default GeneratePassword;
