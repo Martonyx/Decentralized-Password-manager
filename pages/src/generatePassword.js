@@ -17,31 +17,31 @@ const generatePassword = () => {
   const numbers = "1234567890";
   const symbols = "!@#$%^&*(?/)";
 
-  const generateAalphbets = () => {
+  function generateAalphbets() {
     const alpha = Math.floor(Math.random() * alphabets.length);
     const alphaa = Alphabets[alpha];
     return alphaa;
-  };
+  }
 
-  const generateAlphbets = () => {
+  function generateAlphbets() {
     const alpha = Math.floor(Math.random() * alphabets.length);
     const alph = alphabets[alpha];
     return alph;
-  };
+  }
 
-  const generateNumbers = () => {
+  function generateNumbers() {
     const numbs = Math.floor(Math.random() * numbers.length);
     const numb = numbers[numbs];
     return numb;
-  };
+  }
 
-  const generateSymbols = () => {
+  function generateSymbols() {
     const symbol = Math.floor(Math.random() * symbols.length);
     const symb = symbols[symbol];
     return symb;
-  };
+  }
 
-  const generalPassword = () => {
+  function generalPassword() {
     let passwordlength = numEl;
 
     let genPassword = "";
@@ -51,9 +51,9 @@ const generatePassword = () => {
       genPassword += x;
     }
     return setPasswordEle(genPassword);
-  };
+  }
 
-  const generatePass = () => {
+  function generatePass() {
     let xs = [];
 
     if (isAlphaChecked) {
@@ -74,14 +74,14 @@ const generatePassword = () => {
     }
 
     return xs[Math.floor(Math.random() * xs.length)];
-  };
+  }
 
-  const handleCopy = () => {
+  function handleCopy() {
     let text = passwordEle;
     setIsEditing(true);
     navigator.clipboard.writeText(text);
     setIsEditing(false);
-  };
+  }
 
   return (
     <>
