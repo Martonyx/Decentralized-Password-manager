@@ -9,7 +9,6 @@ const generatePassword = () => {
   const [isNumChecked, setNumChecked] = useState(false);
   const [isSymbChecked, setSymbChecked] = useState(false);
   const [passwordEle, setPasswordEle] = useState("");
-  const [textToCopy, setTextToCopy] = useState("");
   const [numEl, setNumEl] = useState("10");
   const [isEditing, setIsEditing] = useState(false);
 
