@@ -57,12 +57,12 @@ export default function Home() {
               <button className={styles.button}>
                 <Link href="./src/generatePassword">Generate Password</Link>
               </button>
-              {/* <button className={styles.button}>
-                    <Link href='./src/addpassword'>Generate Password</Link>
-                  </button> */}
               <button className={styles.button}>
-                <Link href="./src/passwords">Fetch Password</Link>
+                <Link href="./src/passwords">Save Password</Link>
               </button>
+              {/* <button className={styles.button}>
+                <Link href="./src/passwords">Fetch Password</Link>
+              </button> */}
             </div>
           </div>
         </div>

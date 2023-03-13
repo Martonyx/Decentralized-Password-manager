@@ -1,11 +1,28 @@
 import React from "react";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
+import { useState } from "react";
 
 const generatePassword = () => {
+  const [isAlphaaChecked, setAlphaaChecked] = useState(false);
+  const [isAlphaChecked, setAlphaChecked] = useState(false);
+  const [isNumChecked, setNumChecked] = useState(false);
+  const [isSymbChecked, setSymbChecked] = useState(false);
+  const [passwordEle, setPasswordEle] = useState("");
+  const [textToCopy, setTextToCopy] = useState("");
+  const [numEl, setNumEl] = useState("10");
+  const [isEditing, setIsEditing] = useState(false);
+
+  const Alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const alphabets = "abcdefghijklmnopqrstuvwxyz";
   const numbers = "1234567890";
-  const symbols = "!@#$%&*()?";
+  const symbols = "!@#$%^&*(?/)";
+
+  const generateAalphbets = () => {
+    const alpha = Math.floor(Math.random() * alphabets.length);
+    const alphaa = Alphabets[alpha];
+    return alphaa;
+  };
 
   const generateAlphbets = () => {
     const alpha = Math.floor(Math.random() * alphabets.length);
@@ -25,10 +42,46 @@ const generatePassword = () => {
     return symb;
   };
 
-  const generatePass = () => {
-    let password = [];
+  const generalPassword = () => {
+    let passwordlength = numEl;
 
-    return password;
+    let genPassword = "";
+
+    for (let i = 0; i < passwordlength; i++) {
+      const x = generatePass();
+      genPassword += x;
+    }
+    return setPasswordEle(genPassword);
+  };
+
+  const generatePass = () => {
+    let xs = [];
+
+    if (isAlphaChecked) {
+      xs.push(generateAlphbets());
+    }
+    if (isNumChecked) {
+      xs.push(generateNumbers());
+    }
+    if (isSymbChecked) {
+      xs.push(generateSymbols());
+    }
+    if (isAlphaaChecked) {
+      xs.push(generateAalphbets());
+    }
+
+    if (xs.length === 0) {
+      return "";
+    }
+
+    return xs[Math.floor(Math.random() * xs.length)];
+  };
+
+  const handleCopy = () => {
+    let text = passwordEle;
+    setIsEditing(true);
+    navigator.clipboard.writeText(text);
+    setIsEditing(false);
   };
 
   return (
@@ -36,18 +89,31 @@ const generatePassword = () => {
       <button className={styles.backButton}>
         <Link href="/">Back</Link>
       </button>
+      <div className={styles.directionDiv}>
+        <h2>Direction</h2>
+        <p>
+          * The password length is your preferred length of password. (Ranges
+          from 10 to 30 characters)
+        </p>
+        <p>
+          * The checkboxes are to select your preferred password combinations
+        </p>
+      </div>
       <main className={styles.maindiv2}>
-        <div className={styles.passwordfield}>
-          <h1 className={styles.headtext2}>Password Generator</h1>
-          <div id="displayPassword" className={styles.copySpan}>
-            <span className={styles.copySpan1}>
-              <button id="copyButton" className={styles.copyBtn}>
-                copy
-              </button>
-            </span>
-          </div>
-        </div>
         <div className={styles.checklist}>
+          <div className={styles.passwordfield}>
+            <h1 className={styles.headtext2}>Password Generator</h1>
+            {isEditing ? (
+              <textarea value={passwordEle} />
+            ) : (
+              <div className={styles.copySpan}>
+                {passwordEle}
+                <button onClick={handleCopy} className={styles.copyBtn}>
+                  copy
+                </button>
+              </div>
+            )}
+          </div>
           <div className={styles.individualDiv}>
             <label>password length</label>
             <input
@@ -56,21 +122,49 @@ const generatePassword = () => {
               type={"number"}
               min={"10"}
               max={"30"}
+              value={numEl}
+              onChange={(e) => setNumEl(e.target.value)}
             />
           </div>
           <div className={styles.individualDiv}>
-            <label htmlFor="alphabet">Alphabets</label>
-            <input id="alphabet" type={"checkbox"} />
+            <label htmlFor="aalphabet">Capital Alphabets</label>
+            <input
+              name="aalphabet"
+              value={isAlphaaChecked}
+              onChange={(e) => setAlphaaChecked(e.target.value)}
+              type={"checkbox"}
+            />
+          </div>
+          <div className={styles.individualDiv}>
+            <label htmlFor="alphabet">small Alphabets</label>
+            <input
+              name="alphabet"
+              value={isAlphaChecked}
+              onChange={(e) => setAlphaChecked(e.target.value)}
+              type={"checkbox"}
+            />
           </div>
           <div className={styles.individualDiv}>
             <label htmlFor="number">Numbers</label>
-            <input id="number" type={"checkbox"} />
+            <input
+              name="number"
+              value={isNumChecked}
+              onChange={(e) => setNumChecked(e.target.value)}
+              type={"checkbox"}
+            />
           </div>
           <div className={styles.individualDiv}>
             <label htmlFor="symbol">Symbols</label>
-            <input id="symbol" type={"checkbox"} />
+            <input
+              name="symbol"
+              value={isSymbChecked}
+              onChange={(e) => setSymbChecked(e.target.value)}
+              type={"checkbox"}
+            />
           </div>
-          <button className={styles.generateBtn}>Generate Password</button>
+          <button className={styles.generateBtn} onClick={generalPassword}>
+            Generate Password
+          </button>
         </div>
       </main>
     </>
